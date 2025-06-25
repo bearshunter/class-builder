@@ -11,10 +11,11 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@Table(name = "Student")
 @NoArgsConstructor
-public class User {
+public class Student {
 
-    public User(String username, String password, Set<String> roles) {
+    public Student(String username, String password, Set<String> roles) {
         this.username = username;
         this.password = password;
         this.roles = roles;
