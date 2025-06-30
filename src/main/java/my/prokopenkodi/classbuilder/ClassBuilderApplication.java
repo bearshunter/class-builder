@@ -14,9 +14,4 @@ public class ClassBuilderApplication {
     }
 
 
-    @GetMapping
-    public String helloWorld(){
-        return "hello 420";
-    }
-
 }
