@@ -2,13 +2,11 @@ package my.prokopenkodi.classbuilder.controller;
 
 import lombok.AllArgsConstructor;
 import my.prokopenkodi.classbuilder.entity.Student;
-import my.prokopenkodi.classbuilder.repository.StudentRepository;
 import my.prokopenkodi.classbuilder.service.StudentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
