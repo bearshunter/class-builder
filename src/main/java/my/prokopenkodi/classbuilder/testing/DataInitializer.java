@@ -1,7 +1,7 @@
 package my.prokopenkodi.classbuilder.testing;
 
 import lombok.AllArgsConstructor;
-import my.prokopenkodi.classbuilder.service.UserService;
+import my.prokopenkodi.classbuilder.service.StudentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class DataInitializer implements CommandLineRunner {
 
-    private final UserService userService;
+    private final StudentService studentService;
 
     @Override
     public void run(String... args) throws Exception {
-        userService.registerUser("Dmytro Prokopenko", "secretPassword420");
+        studentService.registerUser("dpo", "test");
     }
 }
