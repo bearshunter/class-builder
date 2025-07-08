@@ -1,6 +1,6 @@
 package my.prokopenkodi.classbuilder.repository;
 
-import my.prokopenkodi.classbuilder.entity.Student;
+import my.prokopenkodi.classbuilder.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

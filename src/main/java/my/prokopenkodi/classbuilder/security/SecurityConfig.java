@@ -1,4 +1,4 @@
-package my.prokopenkodi.classbuilder.config;
+package my.prokopenkodi.classbuilder.security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -22,13 +22,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "index", "/css/*","/js/*")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated()
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/register", "/css/**").permitAll()
+                        .anyRequest().authenticated()
                 )
-                .httpBasic();
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/dashboard", true)
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/login?logout")
+                        .permitAll()
+                );
         return http.build();
     }
 

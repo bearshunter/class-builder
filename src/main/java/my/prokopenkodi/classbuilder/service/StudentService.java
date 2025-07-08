@@ -1,6 +1,6 @@
 package my.prokopenkodi.classbuilder.service;
 
-import my.prokopenkodi.classbuilder.entity.Student;
+import my.prokopenkodi.classbuilder.model.Student;
 
 import java.util.List;
 

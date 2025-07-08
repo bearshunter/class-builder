@@ -1,4 +1,4 @@
-package my.prokopenkodi.classbuilder.entity;
+package my.prokopenkodi.classbuilder.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

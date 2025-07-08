@@ -1,4 +1,4 @@
-package my.prokopenkodi.classbuilder.config;
+package my.prokopenkodi.classbuilder.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
