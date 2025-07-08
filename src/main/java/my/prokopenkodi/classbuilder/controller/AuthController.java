@@ -1,11 +1,11 @@
 package my.prokopenkodi.classbuilder.controller;
 
 import lombok.AllArgsConstructor;
-import my.prokopenkodi.classbuilder.model.Student;
 import my.prokopenkodi.classbuilder.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @AllArgsConstructor
@@ -24,8 +24,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(Student student) {
-        studentService.registerUser(student.getUsername(), student.getPassword());
+    public String register(@RequestParam("username") String username,
+                           @RequestParam("email") String email,
+                           @RequestParam("password") String password) {
+        studentService.registerUser(username, email, password);
         return "redirect:/dashboard";
     }
 }

@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Student {
 
-    public Student(String username, String password, Set<String> roles) {
+    public Student(String username, String password, Set<UserRole> roles) {
         this.username = username;
         this.password = password;
         this.roles = roles;
@@ -32,6 +32,6 @@ public class Student {
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private Set<String> roles = new HashSet<>();
+    private Set<UserRole> roles = new HashSet<>();
 
 }

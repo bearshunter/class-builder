@@ -2,6 +2,7 @@ package my.prokopenkodi.classbuilder.service;
 
 import lombok.AllArgsConstructor;
 import my.prokopenkodi.classbuilder.model.Student;
+import my.prokopenkodi.classbuilder.model.UserRole;
 import my.prokopenkodi.classbuilder.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +17,12 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository userRepository;
 
     @Override
-    public boolean registerUser(String username, String password) {
+    public boolean registerUser(String username, String email, String password) {
         if (userRepository.findByUsername(username).isPresent()) {
             return false;
         }
-        Set<String> roles = new HashSet<>();
-        roles.add("ROLE_USER");
+        Set<UserRole> roles = new HashSet<>();
+        roles.add(UserRole.USER);
         my.prokopenkodi.classbuilder.model.Student student =
                 new my.prokopenkodi.classbuilder.model.Student(username, "{noop}"+password, roles);
         userRepository.save(student);

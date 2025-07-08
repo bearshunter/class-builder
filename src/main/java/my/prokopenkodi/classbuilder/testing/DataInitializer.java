@@ -13,6 +13,6 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        studentService.registerUser("dpo", "test");
+        studentService.registerUser("dpo", "test", "test");
     }
 }
