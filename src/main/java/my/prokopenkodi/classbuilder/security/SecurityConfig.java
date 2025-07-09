@@ -1,23 +1,26 @@
 package my.prokopenkodi.classbuilder.security;
 
 import lombok.AllArgsConstructor;
+import my.prokopenkodi.classbuilder.model.entity.Student;
+import my.prokopenkodi.classbuilder.model.dto.User;
+import my.prokopenkodi.classbuilder.service.StudentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.Optional;
 
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig {
 
-    private final PasswordEncoder passwordEncoder;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -38,15 +41,24 @@ public class SecurityConfig {
         return http.build();
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(10);
+    }
+
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        final UserDetails user = User.builder()
-                .username("dpo")
-                .password(passwordEncoder.encode("test"))
-                .roles("STUDENT")
-                .build();
+    public UserDetailsService userDetailsService(StudentService studentService) {
+        return username -> {
+            Optional<Student> student = studentService.findByUsername(username);
+            if (student.isEmpty()) {
+                throw new UsernameNotFoundException("User '" + username + "' not found");
+            }
+            return createUserDetails(student.get());
+        };
+    }
 
-        return new InMemoryUserDetailsManager(user);
+    private User createUserDetails(Student student) {
+        return new User(student.getId(), student.getUsername(), student.getPassword());
     }
 }

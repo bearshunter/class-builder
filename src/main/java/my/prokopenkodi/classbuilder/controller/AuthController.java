@@ -27,7 +27,9 @@ public class AuthController {
     public String register(@RequestParam("username") String username,
                            @RequestParam("email") String email,
                            @RequestParam("password") String password) {
-        studentService.registerUser(username, email, password);
-        return "redirect:/dashboard";
+        if (studentService.registerUser(username, email, password)) {
+            return "login";
+        }
+        return "register";
     }
 }

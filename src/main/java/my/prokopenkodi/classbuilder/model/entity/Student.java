@@ -1,19 +1,20 @@
-package my.prokopenkodi.classbuilder.model;
+package my.prokopenkodi.classbuilder.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "Student")
+@Table(name = "student")
 @NoArgsConstructor
-public class Student {
+public class Student implements Serializable {
 
     public Student(String username, String password, Set<UserRole> roles) {
         this.username = username;
