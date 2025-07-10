@@ -1,4 +1,4 @@
-package my.prokopenkodi.classbuilder.model.dto;
+package my.prokopenkodi.classbuilder.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public record User(long id, String username, String password) implements UserDetails {
+public record PrincipalUser(long id, String username, String password) implements UserDetails {
 
 
     @Override

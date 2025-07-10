@@ -2,7 +2,6 @@ package my.prokopenkodi.classbuilder.security;
 
 import lombok.AllArgsConstructor;
 import my.prokopenkodi.classbuilder.model.entity.Student;
-import my.prokopenkodi.classbuilder.model.dto.User;
 import my.prokopenkodi.classbuilder.service.StudentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -58,7 +57,7 @@ public class SecurityConfig {
         };
     }
 
-    private User createUserDetails(Student student) {
-        return new User(student.getId(), student.getUsername(), student.getPassword());
+    private PrincipalUser createUserDetails(Student student) {
+        return new PrincipalUser(student.getId(), student.getUsername(), student.getPassword());
     }
 }

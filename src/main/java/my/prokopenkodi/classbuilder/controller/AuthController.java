@@ -27,7 +27,7 @@ public class AuthController {
     public String register(@RequestParam("username") String username,
                            @RequestParam("email") String email,
                            @RequestParam("password") String password) {
-        if (studentService.registerUser(username, email, password)) {
+        if (studentService.registerUser(username, email, password).isPresent()) {
             return "login";
         }
         return "register";

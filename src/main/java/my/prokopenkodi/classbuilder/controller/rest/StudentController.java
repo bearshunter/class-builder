@@ -1,4 +1,4 @@
-package my.prokopenkodi.classbuilder.controller;
+package my.prokopenkodi.classbuilder.controller.rest;
 
 import lombok.AllArgsConstructor;
 import my.prokopenkodi.classbuilder.model.entity.Student;

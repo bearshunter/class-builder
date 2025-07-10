@@ -7,9 +7,11 @@ import java.util.Optional;
 
 public interface StudentService {
 
-    boolean registerUser(String username, String email, String password);
+    Optional<Student> registerUser(String username, String email, String password);
 
     Optional<Student> findByUsername(String username);
 
     List<Student> findAll();
+
+    Optional<Student> findById(long id);
 }

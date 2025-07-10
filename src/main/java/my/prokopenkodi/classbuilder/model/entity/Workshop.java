@@ -29,10 +29,10 @@ public class Workshop {
     @Column(nullable = false)
     private long modificationDate;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String text;
 
 
-    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Student creator;
 }
