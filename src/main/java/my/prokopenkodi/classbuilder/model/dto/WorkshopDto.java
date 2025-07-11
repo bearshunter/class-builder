@@ -10,6 +10,6 @@ public record WorkshopDto(
         String text,
         WorkshopStatus status,
         Instant created,
-        IdAndNameDto creator) {
+        long creator) {
 
 }
