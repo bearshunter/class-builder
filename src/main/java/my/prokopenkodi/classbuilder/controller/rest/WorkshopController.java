@@ -1,13 +1,11 @@
 package my.prokopenkodi.classbuilder.controller.rest;
 
 import lombok.AllArgsConstructor;
-import my.prokopenkodi.classbuilder.model.dto.IdAndNameDto;
 import my.prokopenkodi.classbuilder.security.PrincipalUser;
 import my.prokopenkodi.classbuilder.model.dto.WorkshopDto;
 import my.prokopenkodi.classbuilder.model.entity.Student;
 import my.prokopenkodi.classbuilder.model.entity.Workshop;
 import my.prokopenkodi.classbuilder.service.StudentService;
-import my.prokopenkodi.classbuilder.service.WorkshopMapper;
 import my.prokopenkodi.classbuilder.service.WorkshopService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,14 +23,13 @@ public class WorkshopController {
 
     private final StudentService studentService;
     private final WorkshopService workshopService;
-    private final WorkshopMapper workshopMapper;
 
     @GetMapping
     public List<WorkshopDto> workshops(@AuthenticationPrincipal PrincipalUser user) {
         Optional<Student> student = studentService.findById(user.id());
         List<Workshop> workshopsForCurrentUser = workshopService
                 .findWorkshopsForCurrentUser(student.orElse(null));
-        return workshopMapper.toDto(workshopsForCurrentUser);
+        return null;
     }
 
     @GetMapping("{id}")
@@ -45,6 +41,6 @@ public class WorkshopController {
                 .stream()
                 .filter(workshop -> id.equals(workshop.getId())).findFirst()
                 .orElse(null);
-        return workshopMapper.toDto(workshopForCurrentUser);
+        return null;
     }
 }

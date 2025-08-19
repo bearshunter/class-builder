@@ -5,17 +5,44 @@ services:
     environment:
       POSTGRES_USER: cb-admin
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: testdb
       PGDATA: /data/postgres
     volumes:
       - db:/data/postgres
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     ports:
       - "5332:5432"
     networks:
-      - db
+      - app-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cb-admin -d testdb"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+
+  app:
+    container_name: cb-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/testdb
+      SPRING_DATASOURCE_USERNAME: cb-admin
+      SPRING_DATASOURCE_PASSWORD: password
+    ports:
+      - "8080:8080"
+    networks:
+      - app-net
     restart: unless-stopped
 
 networks:
-  db:
+  app-net:
     driver: bridge
 
 volumes:

@@ -9,7 +9,6 @@ public record WorkshopDto(
         String name,
         String text,
         WorkshopStatus status,
-        Instant created,
-        long creator) {
+        Instant created) {
 
 }
