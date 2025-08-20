@@ -6,9 +6,9 @@ services:
       POSTGRES_USER: cb-admin
       POSTGRES_PASSWORD: password
       POSTGRES_DB: testdb
-      PGDATA: /data/postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - db:/data/postgres
+      - ./postgres-data:/var/lib/postgresql/data
       - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     ports:
       - "5332:5432"

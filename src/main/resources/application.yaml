@@ -3,7 +3,7 @@ spring:
     name: class-builder
 
   datasource:
-    url: jdbc:postgresql://localhost:5332/testdb
+    url: jdbc:postgresql://localhost:5432/testdb
     username: cb-admin
     password: password
     driver-class-name: org.postgresql.Driver
@@ -12,4 +12,4 @@ spring:
     properties:
       hibernate.jdbc.time_zone: Europe/Kyiv
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create-only
